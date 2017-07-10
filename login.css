@@ -1,0 +1,117 @@
+/* --- LOG-IN --- */
+
+	body {
+		background-image: url('page-imgs/naga-aerial-1.jpg');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		
+	}
+
+	body .container {
+		margin: 15% auto;
+	}
+
+	.clearfix:after {
+	    content: ".";
+	    display: block;
+	    clear: both;
+	    visibility: hidden;
+	    line-height: 0;
+	    height: 0;
+	    margin: 0;
+	    padding: 0;
+	}
+
+	.panel-body {
+		padding: 13px 13px 10px 13px;
+	}
+
+	.form-group {
+		margin-bottom: 10px;
+	}
+
+	.form-control {
+	    height: 32px;
+	    padding: 7px 4px;
+	    font-size: 14px;
+	}
+
+	.welcome-panel {
+		width: 64.75%;
+		box-sizing: border-box;
+		float: left;
+	}
+
+	.welcome-body {
+		height: 450px;
+	}
+
+	.login-body {
+
+	}
+
+	.register-body {
+		height: 100%; 
+	}
+
+
+	.input-wrapper {
+		float: right;
+		width: 34%;
+		box-sizing: border-box;
+		height: 500px;
+
+	}
+
+	.sign-in-title {
+		margin: 0;
+	}
+
+	.form-password {
+		width: 75% !important;
+		float: left;
+	}
+
+	.form-firstname {
+		width: 49% !important;
+		float: left;
+	}
+
+	.form-lastname {
+		width: 49%;
+		float: right;
+	}
+
+	.btn-login {
+	    font-weight: 600;
+        margin-left: 10px;
+        padding: 5px 13px;
+        border-radius: 15px;
+	}
+
+	.btn-register {
+	    font-weight: 600;
+        margin-top: 15px;
+        float: right;
+        padding: 6px 13px;
+        border-radius: 15px;
+        line-height: 1.5;
+	}
+
+	h6, h5, h4, h3, h2, h1 {
+		margin: 0;
+	}
+
+	.panel {
+		margin-bottom: 0;
+	}
+
+	.login-panel {
+		margin-bottom: 15px;
+	}
+
+	.register-panel {
+		
+	}
+
