@@ -637,7 +637,7 @@
 		margin: 0;
 		margin-right: 20px;
 		width: 320px;
-		height: 213px;
+		height: 180px;
 		float: left;
 	}
 
@@ -664,9 +664,9 @@
 	}
 
 	.latest-post-desc {
-		font-size: 15px;
+		font-size: 14px;
 		color: #666;
-		line-height: 23px;
+		line-height: 22px;
 		overflow: hidden;
 		margin-bottom: 0;
 		display: -webkit-box;
@@ -771,7 +771,7 @@
 			}
 
 		.category-items-sm {
-			padding: 15px 5px;
+			padding: 10px 5px;
 		    border-bottom: 1px dotted #ebebeb;
 		}
 
@@ -801,6 +801,11 @@
 			font-size: 14px;
 			font-weight: 500;
 			font-family: Roboto;
+		}
+
+	/* -- TAGS -- */
+		.tags-wrapper {
+			margin-bottom: 20px;
 		}
 
 

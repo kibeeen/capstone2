@@ -31,7 +31,7 @@
 					<?php echo ucwords($first_name) . " " . ucwords($last_name); ?>
 				</a>
 				<span>
-					| <?php echo $date_modified; ?>
+					| <?php echo $date_published; ?>
 				</span>
 			</span>
 		</div>

@@ -239,6 +239,28 @@
 		<!-- social sharing buttons -->
 		<?php require $_SERVER['DOCUMENT_ROOT'].'/capstone2/article-pages/social-sharing-icons.php' ?>
 
+		<div class='tags-wrapper clearfix'>
+
+			<?php 
+
+				echo "TAGS: ";
+
+				$query_tag = "SELECT tag_name FROM blog_tags JOIN post_tags ON (blog_tags.tags_id = post_tags.tags_id) WHERE blog_post_id = '$get_id'";
+
+				$result = mysqli_query($con,$query_tag);
+
+					if (mysqli_num_rows($result) > 0);
+
+					while ($row = mysqli_fetch_assoc($result)) {
+						extract($row);
+
+						echo "$tag_name, ";
+
+					}
+
+			 ?>
+		</div>
+
 	</div> <!-- end of entry content -->
 
 	<!-- ad space -->
@@ -255,6 +277,8 @@
 
 			</div>
 	</div>
+
+
 
 	<!-- about the author -->
 	<div class='win-author-box clearfix'>
