@@ -15,7 +15,7 @@
 
 		<div class='latest-post-title'>
 			<a href ="viewpost.php?id=<?php echo $blog_id; ?>">
-				<?php echo $title; ?>
+				<?php echo stripslashes($title); ?>
 			</a>
 		</div>
 		<p class='latest-post-desc'>

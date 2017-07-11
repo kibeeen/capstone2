@@ -33,30 +33,28 @@
 
 
 
-	<!-- 	<script type="text/javascript">
-			
-			document.getElementById('delete-post').onclick = function(){
+									<!-- 	<script type="text/javascript">
+											
+											document.getElementById('acceptDelete').onclick = function(){
 
-				swal({
-				  title: 'Are you sure?',
-				  text: "You won't be able to revert this!",
-				  type: 'warning',
-				  showCancelButton: true,
-				  confirmButtonColor: '#3085d6',
-				  cancelButtonColor: '#d33',
-				  confirmButtonText: 'Yes, delete it!'
-				}).then(function () {
-				  swal(
-				    'Deleted!',
-				    'Your file has been deleted.',
-				    'success',
-				    
-				  )
-				})
+												swal(
+												  'Good job!',
+												  'You clicked the button!',
+												  'success',
+												  timer: 2500
+												).then(
+												  function () {},
+												  // handling the promise rejection
+												  function (dismiss) {
+												    if (dismiss === 'timer') {
+												      console.log('I was closed by the timer')
+												    }
+												  }
+												)
 
-			}
+											}
 
-		</script> -->
+										</script> -->
 
 
 

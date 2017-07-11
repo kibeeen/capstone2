@@ -217,6 +217,45 @@
 
 							mysqli_query($con,$sql);
 
+							$get_id = mysqli_insert_id($con); // chamba ko lang to
+
+									$tagsID = explode(",",$tags);
+
+									foreach($tagsID as $tagName){						
+
+										$query = "SELECT * FROM blog_tags WHERE tag_name = '$tagName'";
+
+										$result = mysqli_query($con,$query);
+
+										if (mysqli_num_rows($result)==0) {
+											$sql = "INSERT INTO blog_tags (tag_name) VALUES ('$tagName')";
+											$result = mysqli_query($con,$sql);
+											$tag_id = mysqli_insert_id($con);
+
+										} else {
+											
+											$query = "SELECT * FROM blog_tags WHERE tag_name = '$tagName'";
+											$result = mysqli_query($con,$query);
+
+												while($row = mysqli_fetch_assoc($result)){
+													$tag_id = $row['tags_id'];
+												}
+										}
+
+										$query = "SELECT * FROM post_tags WHERE tags_id = '$tag_id' AND blog_post_id = '$get_id' ";
+
+										$result = mysqli_query($con,$query);
+
+
+										if(mysqli_num_rows($result)==0){
+											
+											$query = "INSERT INTO post_tags(tags_id,blog_post_id) VALUES('$tag_id','$get_id')";
+											mysqli_query($con,$query);
+										}
+
+
+									}
+
 							echo 'Post Submitted! <br><br><br>';
 
 						}

@@ -6,7 +6,7 @@
 	$sql = "SELECT * FROM blog_post
 			JOIN users ON(users.user_id = blog_post.author_id)
 			JOIN blog_categories ON(blog_categories.category_id = blog_post.category_id)
-			WHERE approved ORDER BY date_published DESC";
+			WHERE approved ORDER BY date_published DESC, time_published DESC";
 
 	$result = mysqli_query($con,$sql);
 
@@ -164,7 +164,7 @@
 										<input type='hidden' name='post-id' value='$postID'>
 							         	<button type='submit' name='cancel-delete' class='btn btn-default'>Cancel</button>
 
-								        <button type='submit' name='accept-delete' class='btn btn-danger'>Yes, delete this post</button>
+								        <button type='submit' id='acceptDelete' name='accept-delete' class='btn btn-danger'>Yes, delete this post</button>
 						         	</form>
 
 								</div>
@@ -212,45 +212,26 @@
 
 
 
-			header('location:published-posts.php');	
+
+
+			header('Location: '.$_SERVER['REQUEST_URI']);
+
+
 
 			
 
-
-
-
-			// $sql = "UPDATE blog_post SET approved = '1', denied ='0' WHERE blog_id = $postID";
-
-			// mysqli_query($con,$sql);
-
-			// header('location:published-posts.php');	
-
 		}
 
 
 
 
-		if(isset($_POST['deny'])){ // should be added after while
-	    	$postID = $_GET['id'];;
+		// if(isset($_POST['cancel-delete'])){ // should be added after while
 
-	    	$sql = "SELECT * FROM blog_post
-					JOIN users ON(users.user_id = blog_post.author_id)
-					JOIN blog_categories ON(blog_categories.category_id = blog_post.category_id)
-					WHERE blog_id = $postID";
+		// 	header('location:published-posts.php');	
 
-			$result = mysqli_query($con,$sql);
+		// }
 
-			$row = mysqli_fetch_assoc($result);
 
-			extract($row);
-
-			$sql = "UPDATE blog_post SET approved = '0', denied = '1' WHERE blog_id = $postID";
-
-			mysqli_query($con,$sql);
-
-			header('location:published-posts.php');	
-
-		}
 
 
 

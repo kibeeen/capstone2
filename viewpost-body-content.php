@@ -138,6 +138,7 @@
 
 			extract($row);
 
+
 			
 
 			// GET USERNAME FROM USERS
@@ -181,7 +182,7 @@
 		<div class='entry-meta'>
 			<span class='entry-meta-date'>
 				<i class='fa fa-clock-o'></i>
-				<a><?php echo $date_created . " " . $time_created; ?></a>
+				<a><?php echo $date_published . ", " . $time_published; ?></a>
 			</span>
 			<span class='entry-meta-author'>
 				<i class='fa fa-user'></i>
@@ -277,10 +278,10 @@
 
 			</div>
 	</div>
+</article>
 
 
-
-	<!-- about the author -->
+<!-- about the author -->
 	<div class='win-author-box clearfix'>
 		<figure class='margin-0'>
 			<img src='page-imgs/admin.jpg' class='win-author-box-img'>
@@ -299,7 +300,7 @@
 		</div>
 	</div> <!-- end of author box -->
 
-	<!-- prev post and next post -->
+<!-- prev post and next post -->
 	<div class='widget-post-nav clearfix'>
 		<div class='widget-col-prev'>
 			<a href="viewpost.php?id=<?php echo $prevpost_id; ?>" class='nav-a'>
@@ -330,8 +331,9 @@
 		</div>	
 	</div>
 
-	
-	<section class='related-articles'>
+
+
+	<section class='related-articles clearfix'>
 
 		<div class='feed-related-articles clearfix'>
 
@@ -339,7 +341,6 @@
 					<span class='widget-title-inner'>
 						We Recommend 
 					</span>
-
 
 				</div>
 
@@ -349,7 +350,7 @@
 						<div class='col-sm-6 col-md-4 col-fix-margin center-text'>
 
 							<figure class='related-figure'>
-								<img src='nadine.jpg'>
+								<img src='http://localhost/capstone2/uploads/blog_images/Double-Dragon-3.jpg' class='related-img'>
 							</figure>
 
 							<div class='widget-content-md'>
@@ -366,11 +367,12 @@
 						</div>
 
 
+
 						<div class='col-sm-6 col-md-4 col-fix-margin'>
 
 						
 							<figure class='related-figure'>
-								<img src='http://images3.fhm.com.ph/2017/07/07/NBA-Jargon.jpg'>
+								<img src='http://localhost/capstone2/uploads/blog_images/Double-Dragon-3.jpg' class='related-img'>
 							</figure>
 
 							<div class='widget-content-md'>
@@ -402,7 +404,7 @@
 						</div>
 
 			
-					</div>
+					</div> <!-- win-row clearfix -->
 
 
 
@@ -478,6 +480,58 @@
 
 	</section>
 
+	<?php require 'partials/link-bootstrap.php'; ?>
+
+<!-- comment section -->
+<!-- 	<section class='comment-section clearfix' id='comment-section'>
+
+		<h4 class='widget-title-red'>
+			<span class='widget-title-inner'>COMMENTS</span>
+		</h4>
+
+		<div class="media">
+			<div class="media-left">
+			    <img src="nadine.jpg" class='media-object comment-avatar' >
+			 </div>
+			 <div class="media-body">
+			    <h4 class="media-heading">John Doe</h4>
+			    <p>Lorem ipsum...</p>
+			</div>
+		</div>
 
 
-</article>
+	</section> -->
+
+	<div class='comment-form'>
+		<form method='POST'>
+			<div class="form-group">
+				<label for="comments">Comment</label>
+				<textarea type='text' name='comments' value='Name'></textarea>
+			</div>
+			Name <br>
+			<input type='text' name='name' value='Name'><br><br>
+			Email <br>
+			<input type='email' name='email' value='Name'><br><br>
+			Website <br>
+			<input type='text' name='website' value='Name'><br><br>
+			<input type='submit' name='post-comment' value='Submit'><br><br>
+		</form>
+	</div>
+
+
+	<?php 
+
+		if(isset($_POST['post-comment'])){
+
+		}
+
+
+
+
+
+
+
+	 ?>
+
+
+

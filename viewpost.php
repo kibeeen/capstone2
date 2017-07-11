@@ -1,7 +1,23 @@
 <?php 
 
 	function get_title(){ // Displays Page Title
-			echo 'Get the title of the blog post';
+
+		$get_id = $_GET['id'];
+
+		require_once 'connection.php';
+
+			$sql = "SELECT * FROM blog_post
+			JOIN users ON(users.user_id = blog_post.author_id)
+			JOIN blog_categories ON(blog_categories.category_id = blog_post.category_id)
+			WHERE blog_id = '$get_id'";
+
+			$result = mysqli_query($con,$sql);
+
+			$row = mysqli_fetch_assoc($result);
+
+			extract($row);
+
+			echo $title . " | When In Naga";
 		}
 
 	function display_content(){ ?>
@@ -29,6 +45,8 @@
 
 		<?php
 	}
+
+
 
 	require_once 'WhenInNaga.php';
 ?>

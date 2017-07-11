@@ -51,11 +51,44 @@
 
 <!-- TRENDING NOW SECTION-->
 <div class='trending-now-wrapper'>
+
 	<div class='trending-now-bg'>
 		<div class='trending-box'>
 			<span class='trending-text'>TRENDING NOW&nbsp
 				<i class="fa fa-bolt" aria-hidden="true"></i>
 			</span>
 		</div>
+
+<div class='marquee'>
+  <?php 
+
+    require $_SERVER['DOCUMENT_ROOT'].'/capstone2/connection.php';
+
+    $ticker_query = "SELECT title, name FROM blog_post JOIN blog_categories on (blog_post.category_id = blog_categories.category_id) ORDER BY views DESC LIMIT 5";
+
+    $result_t = mysqli_query($con, $ticker_query);
+
+    echo "<ul class='news-ticker'>";
+
+    if (mysqli_num_rows($result_t) > 0 );
+
+      while ($row_t = mysqli_fetch_assoc($result_t)) {
+
+        extract($row_t);
+
+        echo "<li class='news-ticker-item'> $title </li>" . " • ";
+
+      }
+
+        echo "</ul>";
+
+        require_once 'library.php';
+  ?>
+
+</div>
+
+
+
+
 	</div>
 </div>

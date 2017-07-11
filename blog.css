@@ -163,6 +163,12 @@
 	}
 
 /* --- TRENDING NOW TICKER --- */
+
+	.marquee {
+/*	  width: 800px;*/
+	  overflow: hidden;
+	}
+
 	.trending-now-wrapper {
 		position: relative;
 		background-color: #fff;
@@ -205,6 +211,27 @@
 		float: right;
 		line-height: 37.5px;
 		padding-right: 16px;
+	}
+
+	.news-ticker {
+		list-style-type: none !important;
+		display: inline !important;
+
+	}
+
+	.news-ticker > li{
+		list-style-type: none !important;
+		display: inline !important;
+		font-weight: 600;
+	}
+
+	ul:not(.browser-default) li {
+		
+	}
+
+	.news-ticker-item {
+		margin: 0 10px;
+		font-weight: 600;
 	}
 
 /* --- BODY --- */
@@ -501,8 +528,10 @@
 		color: #fff;
 	}
 
-	ul.widget-custom-posts {
-		margin-top: 20px !important;
+	.widget-custom-posts {
+		padding-top: 20px;
+		list-style-type: none;
+		display: inline;
 	}
 
 	.fa-youtube-play,
@@ -693,6 +722,11 @@
 
 	.article-categories-box > .col-sm-4 {
 		padding: 5px;
+	}
+
+	.article-box {
+		list-style-type: none;
+		display: inline ;
 	}
 
 	.article-box:first-child {
@@ -1223,6 +1257,13 @@
 
 		.related-figure {
 			margin: 0 0 10px 0;
+			width: 217px
+			height: 122px;
+		}
+
+		.related-img {
+			width: 100%;
+			object-fit: cover;
 		}
 
 		.widget-meta-category-md {
@@ -1267,4 +1308,18 @@
 			margin-bottom: 20px;
 		}
 
+
+/* --- COMMENT SECTION --- */
+
+	.comment-section {
+		margin-top: 20px;
+	}
+
+	.comment-avatar {
+		width: 80px;
+	}
+
+	.form-control {
+
+	}
 

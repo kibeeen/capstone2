@@ -10,7 +10,7 @@
 		<div class='widget-custom-posts-header'>
 			<div class='widget-meta-category'><?php echo $name; ?></div>
 			<div class='widget-custom-posts-small-title'>
-				<a href="viewpost.php?id=<?php echo $blog_id; ?>" target='_blank'><?php echo $title; ?></a>
+				<a href="viewpost.php?id=<?php echo $blog_id; ?>" ><?php echo $title; ?></a>
 			</div>
 			
 
