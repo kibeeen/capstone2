@@ -193,7 +193,7 @@
 				<a><?php echo $name; ?></a>
 			</span>
 
-<!-- 			<span class='entry-meta-views'>
+	<!-- <span class='entry-meta-views'>
 				<i class='fa fa-comment-o'></i>
 				<a>17</a>
 			</span> -->
@@ -222,7 +222,7 @@
 
 	<div class='entry-content clearfix'>
 
-	<!-- 	<figure class='entry-thumbnail'>
+		<!-- 	<figure class='entry-thumbnail'>
 			<img src='http://demo.mhthemes.com/magazine/wp-content/uploads/sites/16/2015/10/singapore_river-678x381.jpg' alt='Singapore River' title='Singapore River'>
 
 			<figcaption class='entry-thumbnail-caption'>
@@ -278,6 +278,7 @@
 
 			</div>
 	</div>
+
 </article>
 
 
@@ -332,7 +333,7 @@
 	</div>
 
 
-
+<!-- related articles section -->
 	<section class='related-articles clearfix'>
 
 		<div class='feed-related-articles clearfix'>
@@ -480,58 +481,105 @@
 
 	</section>
 
-	<?php require 'partials/link-bootstrap.php'; ?>
+
 
 <!-- comment section -->
-<!-- 	<section class='comment-section clearfix' id='comment-section'>
+
+	<section class='comment-section clearfix' id='comment-section'>
 
 		<h4 class='widget-title-red'>
-			<span class='widget-title-inner'>COMMENTS</span>
+			<span class='widget-title-inner'>COMMENT SECTION</span>
 		</h4>
 
-		<div class="media">
-			<div class="media-left">
-			    <img src="nadine.jpg" class='media-object comment-avatar' >
-			 </div>
-			 <div class="media-body">
-			    <h4 class="media-heading">John Doe</h4>
-			    <p>Lorem ipsum...</p>
-			</div>
-		</div>
+	<?php require 'article-pages/view-comments.php' ?>
+
+	</section>
 
 
-	</section> -->
-
-	<div class='comment-form'>
-		<form method='POST'>
-			<div class="form-group">
-				<label for="comments">Comment</label>
-				<textarea type='text' name='comments' value='Name'></textarea>
-			</div>
-			Name <br>
-			<input type='text' name='name' value='Name'><br><br>
-			Email <br>
-			<input type='email' name='email' value='Name'><br><br>
-			Website <br>
-			<input type='text' name='website' value='Name'><br><br>
-			<input type='submit' name='post-comment' value='Submit'><br><br>
-		</form>
-	</div>
-
-
+<!-- sql -->
 	<?php 
 
 		if(isset($_POST['post-comment'])){
 
-		}
+			$comment = $_POST['comments'];
+
+			$commenter_email = $_POST['email'];
+
+			$commenter = $_POST['name'];
+			
+			$commenter_website = $_POST['website'];
+			$comment_date = date('F d, Y') . " AT " . date('h:i A');
+
+			
+
+					
+		// SHOW UNIQUE VISITOR COUNT
+			// Get IP
+			// $ip = $_SERVER['REMOTE_ADDR'];
+
+			// Check if this IP exist
+			$sql = "SELECT visitor_email FROM visitors WHERE visitor_email='$commenter_email'";
+
+			$result = mysqli_query($con,$sql);
+
+			if (mysqli_num_rows($result)==0) {
+				$query = "INSERT INTO visitors(ip, visitor_name, visitor_website, visitor_email) VALUES('$ip', '$commenter', '$commenter_website', '$commenter_email')";
+				if(mysqli_query($con,$query)){
+					$visitor_id = mysqli_insert_id($con);
+				}
+			} else {
+				$query = "SELECT visitor_id FROM visitors WHERE ip='$ip'";
+				$result = mysqli_query($con,$query);
+				while($row = mysqli_fetch_assoc($result)){
+					$visitor_id = $row['visitor_id'];
+				}
+			}
+
+			// query for inserting visitor info
+			$sql = "INSERT INTO visitors(comment, comment_date, visitor_id) VALUES ('$comment', '$comment_date', '$visitor_id')";
+			mysqli_query($con,$sql);
+
+
+			//query for inserting a comment
+			$sql_comment = "INSERT INTO comments(comment, comment_date, visitor_id) VALUES ('$comment', '$comment_date', '$visitor_id')";
+
+			if(mysqli_query($con,$sql_comment)){
+				// if new insert (ex. comment), this function gets the recently added id and stores into a variable.
+				$comment_id = mysqli_insert_id($con); 
+
+				}
+
+
+			$sql = "INSERT INTO blog_comments(blog_post_id, comment_id, visitor_id) VALUES ('$get_id','$comment_id','$visitor_id')";
+
+			$result = mysqli_query($con,$sql);
+		
 
 
 
-
-
-
+		} // end of if statement
 
 	 ?>
 
+<!-- comment form	 -->
+	<div class='comment-form'>
+		<form method='POST'>
+			Email <br>
+			<input type='email' id='comment-email' name='email' placeholder='Email' required><br><br>
+			<div class="form-group">
+				<label for="comments">Comment</label>
+				<textarea style="margin: 0px; height: 200px; width: 767px;" type='text' name='comments' required></textarea>
+			</div>
+			Name <br>
+			<input type='text' id='comment-name' name='name' placeholder='Name' required><br><br>
+	
+			Website <br>
+			<input type='text' id='comment-website' name='website' placeholder='Website'><br><br>
+			<input type='submit' id='submit-comment' name='post-comment' value='Submit'><br><br>
+		</form>
+	</div>
+
+<?php require_once 'library.php'; ?>
+	
 
 

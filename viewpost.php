@@ -1,5 +1,6 @@
 <?php 
 
+if(isset($_GET['id'])){
 	function get_title(){ // Displays Page Title
 
 		$get_id = $_GET['id'];
@@ -49,4 +50,7 @@
 
 
 	require_once 'WhenInNaga.php';
+} else {
+	header('location:restricted.php');
+}
 ?>

@@ -89,3 +89,38 @@
 	 	 });
 
 	</script>
+
+
+<!-- CHECK EMAIL COMMENT -->
+
+<script type="text/javascript">
+$( document ).ready(function(){
+	
+	$('#comment-email').blur(function(){
+		$.post("api/check-email.php",
+	    {
+	        email: $('#comment-email').val()
+	    },
+	    function(data, status){
+	    	if(data=='0'){
+	    		$('#comment-name').val('');
+		        $('#comment-website').val('');
+		        $('#comment-name').attr('readonly', false);
+		        $('#comment-website').attr('readonly', false);
+	    	} else {
+		        var visitor = JSON.parse(data);
+		        $('#comment-name').val(visitor.visitor_name);
+		        $('#comment-website').val(visitor.visitor_website);
+		        $('#comment-name').attr('readonly', true);
+		        $('#comment-website').attr('readonly', true);
+		    }
+
+	    });
+
+
+
+	});
+});
+
+
+</script>
