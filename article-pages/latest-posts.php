@@ -10,7 +10,9 @@
 		
 
 		<div class='widget-meta-category-latest'>
-			<?php echo $name; ?>
+			<a href="viewpost-category.php?id=<?php echo $category_id; ?>"  target='_blank'>
+				<?php echo $name; ?>
+			</a>
 		</div>
 
 		<div class='latest-post-title'>

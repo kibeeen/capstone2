@@ -1,15 +1,15 @@
 /* --- LOG-IN --- */
 
 	body {
-		background-image: url('page-imgs/naga-aerial-1.jpg');
+		background: url('/capstone2/page-imgs/nagact.jpg');
 		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
+		/*background-attachment: fixed;*/
+		background-size: 180%;
+		background-position:  65% 20%;
 		
 	}
 
 	body .container {
-		margin: 15% auto;
 	}
 
 	.clearfix:after {
@@ -43,16 +43,20 @@
 		float: left;
 	}
 
+	.despacito {
+		margin-top: 250px;
+	}
+
 	.welcome-body {
 		height: 450px;
+		background-size: cover;
 	}
 
 	.login-body {
-
+		max-height: 97px;
 	}
 
 	.register-body {
-		height: 100%; 
 	}
 
 
@@ -60,7 +64,6 @@
 		float: right;
 		width: 34%;
 		box-sizing: border-box;
-		height: 500px;
 
 	}
 
@@ -108,7 +111,7 @@
 	}
 
 	.login-panel {
-		margin-bottom: 15px;
+		margin-bottom: 12px;
 	}
 
 	.register-panel {

@@ -12,6 +12,8 @@
 
 	$count = 1;
 
+	$new_counter = 0;
+
 	if (mysqli_num_rows($result) > 0);
 
 		while ($row = mysqli_fetch_assoc($result)) 
@@ -41,18 +43,34 @@
 
 				extract($row2);
 
-
+// </p>    
 	$blogID = [];
 
 	$blogID[$count] = $blog_id;
 
 	$postID = $blogID[$count];
 
-	echo "<tr>";
-
-	echo "	
+	echo "<tr>
 		<td>$count</td>
-		<td><strong><a href='/capstone2/admin-pages/edit-entry.php?id=$blogID[$count]'>$title</a></strong></td>
+		";
+
+		if ($new_counter < 2) {
+			echo "
+			<td>
+			<span class='label label-success label-new'>New</span>
+			<strong><a href='/capstone2/admin-pages/edit-entry.php?id=$blogID[$count]'>$title</a></strong>
+			</td>
+				";
+		} else {
+			echo "
+			<td>
+			<strong><a href='/capstone2/admin-pages/edit-entry.php?id=$blogID[$count]'>$title</a></strong>
+			</td>
+			";
+		}
+		
+
+		echo "
 		<td>$first_name $last_name</td>
 		<td>$name</td>
 		<td>0</td>
@@ -111,6 +129,7 @@
 			echo "<tr>";
 
 			$count = $count + 1;
+			$new_counter = $new_counter + 1;
 
 		}
 

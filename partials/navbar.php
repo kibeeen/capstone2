@@ -1,53 +1,98 @@
+<div id='win-navbar' class='win-navbar clearfix'>
 
-<!-- 1ST TITLE NAVBAR -->
-<nav class='z-depth-0' > 
-    <div class="nav-wrapper">
+  <div>
 
-<!--     <a href="#" class="right">ADMIN LOGIN</a> -->
-	  <a href="win-login.php" class="brand-logo right"><i class="fa fa-sign-in"></i></a>
+    <ul class='win-navbar-ul'>
 
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
+      <li><a href='#' class='win-navbar-a'>ABOUT US</a></li>
+      <li><a href='#' class='win-navbar-a'>CONTACT US</a></li>
+      <li><a href='#' class='win-navbar-a'>FAQ</a></li>
+
+    </ul>
+
+    <ul class='win-navbar-ul win-navbar-social'>
+
+      <li><a href='#' class='win-social-a'><i class="fa fa-facebook"></i></a></li>
+      <li><a href='#' class='win-social-a'><i class="fa fa-twitter"></i></a></li>
+      <li><a href='#' class='win-social-a'><i class="fa fa-instagram"></i></a></li>
+      <li><a href='#' class='win-social-a'><i class="fa fa-youtube"></i></a></li>
+
+
+    </ul>
+
+  </div>
+
+</div> <!-- win-navbar -->
+
+
+
+
+
+<div class='win-header-lg clearfix'>
+  <div class='row'>
+
+    <div class='col-sm-4'>
+      <figure class='win-header-lg-figure'>
+
+        <img class='win-header-lg-img' src='page-imgs/logo4.png'>
+      </figure>
     </div>
-</nav> <!-- end of 1st navbar -->
 
-<!-- LOGO AND LEADERBOARD AD SECTION -->
-<div class='main-header-wrapper'>
-    <div class='row main-header'>
-
-    	<!-- PAGE LOGO SECTION -->
-	    <div class='col s4'>
-		    <div class='page-logo-wrapper'>
-		    	<img class='page-logo' src='page-imgs/logo4.png' alt='WhenInNaga logo'>
-		    </div>
-	    </div>
-
-	    <!-- ADS SPACE 1 -->
-	    <div class='col s8'>
-	    	<div class='ads-space-1-wrapper'>
-    			<!-- <img src='page-imgs/leaderboard.png' alt='leaderboard' class='leaderboard'> -->
-	    	</div>
-	    </div>
-    </div> <!-- end of row -->
-</div>
-
-<!-- 2ND TITLE NAVBAR -->
-<nav class='z-depth-0' >
-    <div class="nav-wrapper">
-      <!--  <a href="#" class="brand-logo center">Logo</a> -->
-      <ul class="left hide-on-med-and-down">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#">Entertainment</a></li>
-        <li><a href="#">Lifestyle</a></li>
-        <li><a href="#">Food</a></li>
-        <li><a href="#">Travel</a></li>
-        <li><a href="#">Sports</a></li>
-        <li><a href="#">Events</a></li>
-      </ul>
+    <div class='col-sm-8'>
+        <figure class='win-header-lg-figure-r'>
+          <img src='page-imgs/ad1.png' class='win-header-ad-img' >
+        </figure>
     </div>
-</nav> <!-- end of 2nd navbar -->
+
+  </div>
+</div> <!-- end of win-header-lg-wrapper clearfix -->
+
+
+
+
+
+
+<nav class="navbar navbar-inverse">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>                        
+  </button>
+
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav navbar-left">
+      <li><a href="/capstone2/" class='navbar-nav-a'>HOME</a></li>
+      <li><a href="/capstone2/viewpost-category.php?id=2" class='navbar-nav-a'>FOOD</a></li>
+      <li><a href="/capstone2/viewpost-category.php?id=5" class='navbar-nav-a'>ADVENTURE</a></li>
+      <li><a href="/capstone2/viewpost-category.php?id=1" class='navbar-nav-a'>ENTERTAINMENT</a></li>
+      <li><a href="/capstone2/viewpost-category.php?id=3" class='navbar-nav-a'>TECHNOLOGY</a></li>
+      <li><a href="/capstone2/viewpost-category.php?id=12" class='navbar-nav-a'>BUSINESS</a></li>
+    </ul>
+
+    <form class="navbar-form navbar-right">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+
+</nav>
+
+
+
+
+
+
+
+
 
 <!-- TRENDING NOW SECTION-->
 <div class='trending-now-wrapper'>
@@ -62,9 +107,11 @@
 <div class='marquee'>
   <?php 
 
+  ob_start();
+
     require $_SERVER['DOCUMENT_ROOT'].'/capstone2/connection.php';
 
-    $ticker_query = "SELECT title, name FROM blog_post JOIN blog_categories on (blog_post.category_id = blog_categories.category_id) ORDER BY views DESC LIMIT 5";
+    $ticker_query = "SELECT title, name, blog_id FROM blog_post JOIN blog_categories on (blog_post.category_id = blog_categories.category_id) ORDER BY views DESC LIMIT 5";
 
     $result_t = mysqli_query($con, $ticker_query);
 
@@ -76,13 +123,17 @@
 
         extract($row_t);
 
-        echo "<li class='news-ticker-item'> $title </li>" . " • ";
+        echo "
+        
+          <li class='news-ticker-item'><a href='viewpost.php?id=$blog_id' target='_blank'><span class='cat-box'>$name</span>$title </a></li>
+        ";
 
       }
 
         echo "</ul>";
 
         require_once 'library.php';
+
   ?>
 
 </div>

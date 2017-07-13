@@ -31,7 +31,7 @@
 				mysqli_query($con,$query);
 			}
 
-
+		// counts the number of views and insert it to blog_post.views column
 		$query = "SELECT * FROM blog_visitors
 			    JOIN blog_post ON(blog_post.blog_id = blog_visitors.blog_post_id)
 			    JOIN visitors ON(visitors.visitor_id = blog_visitors.visitor_id)

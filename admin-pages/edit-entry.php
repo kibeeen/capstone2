@@ -126,8 +126,12 @@
 
 							require_once $_SERVER['DOCUMENT_ROOT'].'/capstone2/connection.php';
 
+							// $title = addslashes($title);
 							$title = mysqli_real_escape_string($con,$_POST['title']);
+
+							// $subheading = addslashes($subheading);
 							$subheading = mysqli_real_escape_string($con,$_POST['subheading']);
+							
 							$category = $_POST['category'];
 							$tags = $_POST['tags'];
 							$article = mysqli_real_escape_string($con,$_POST['article_content']);

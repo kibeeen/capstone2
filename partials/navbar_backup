@@ -1,0 +1,30 @@
+
+
+
+  <div class='win-header-lg-wrapper clearfix'>
+    <div class='clearfix'>
+
+        <div class='win-header-lg-box1 clearfix'>
+          <div class='win-header-logo'>
+            <figure class='win-header-lg-figure'>
+                <img src='page-imgs/logo4.png' class='win-header-lg-img'>
+            </figure>
+          </div>
+        </div> <!-- end of win-header-lg-box1 -->
+
+
+
+        <div class='win-header-lg-box2 clearfix'>
+          <div class='win-header-ad-box'>
+
+            <div class='ads-space-1-wrapper'>
+
+              <img src='page-imgs/ad1.png' class='win-header-ad-img' >
+
+            </div> 
+
+          </div> <!-- end of win-header-ad-box -->
+        </div> <!-- end of win-header-lg-box2 -->
+
+    </div> <!-- clearfix -->
+  </div> <!-- end of win-header-lg-wrapper clearfix -->

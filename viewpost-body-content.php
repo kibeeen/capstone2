@@ -1,5 +1,7 @@
 <?php 
 	
+	
+
 	require 'connection.php';
 
 	mysqli_set_charset($con,'utf8');
@@ -36,25 +38,25 @@
 
 			// GET USERNAME FROM USERS
 
-				$sql1 = "SELECT username from users
-						WHERE user_id = '$user_id'";
+				// $sql1 = "SELECT username from users
+				// 		WHERE user_id = '$user_id'";
 
-				$result1 = mysqli_query($con,$sql1);
+				// $result1 = mysqli_query($con,$sql1);
 
-				$row1 = mysqli_fetch_assoc($result1);
+				// $row1 = mysqli_fetch_assoc($result1);
 
-				extract($row1);
+				// extract($row1);
 
 			// GET CATEGORY.NAME FROM BLOG_CATEGORY
 
-				$sql2 = "SELECT name from blog_categories
-							WHERE category_id = '$category_id'";
+				// $sql2 = "SELECT name from blog_categories
+				// 			WHERE category_id = '$category_id'";
 
-				$result2 = mysqli_query($con,$sql2);
+				// $result2 = mysqli_query($con,$sql2);
 
-				$row2 = mysqli_fetch_assoc($result2);
+				// $row2 = mysqli_fetch_assoc($result2);
 
-				extract($row2);
+				// extract($row2);
 
 				$name = strtolower($name);
 				$name = ucwords($name);
@@ -168,6 +170,14 @@
 				$article = ucfirst($article);		
 
  ?>
+<div class="breadcrumb-container">                
+  	<ol class="breadcrumb">
+	    <li><a href="/capstone2/">Home</a></li>
+	    <li><a href="/capstone2/viewpost-category.php?id=<?php echo $category_id; ?>"><?php echo $name; ?></a></li>
+	    <li class='active'><?php echo $title; ?></li>   
+ 	</ol>
+</div>
+
 
 <article>
 	<div class='entry-header'>
@@ -188,17 +198,19 @@
 				<i class='fa fa-user'></i>
 				<a><?php echo ucfirst($first_name) . " ". substr(ucfirst($middle_name), 0, 1).". " . ucfirst($last_name); ?></a>
 			</span>
+
 			<span class='entry-meta-categories'>
 				<i class='fa fa-folder-open-o'></i>
-				<a><?php echo $name; ?></a>
+				<a href='/capstone2/viewpost-category.php?id=<?php echo $category_id;?>'><?php echo $name; ?></a>
 			</span>
 
-	<!-- <span class='entry-meta-views'>
-				<i class='fa fa-comment-o'></i>
-				<a>17</a>
-			</span> -->
 			<span class='entry-meta-comments'>
 				<i class='fa fa-eye'></i> <?php echo $views; ?>
+			</span>
+
+			<span class='entry-meta-views'>
+				<i class='fa fa-comment-o'></i>
+				<a><?php echo $comments_count ?></a>
 			</span>
 
 		</div> <!-- entry meta -->
@@ -240,11 +252,12 @@
 		<!-- social sharing buttons -->
 		<?php require $_SERVER['DOCUMENT_ROOT'].'/capstone2/article-pages/social-sharing-icons.php' ?>
 
+	<!-- tags section	 -->
 		<div class='tags-wrapper clearfix'>
 
 			<?php 
 
-				echo "TAGS: ";
+				echo "<span class='tag-box'><i class='fa fa-tag'></i>TAGS :</span>";
 
 				$query_tag = "SELECT tag_name FROM blog_tags JOIN post_tags ON (blog_tags.tags_id = post_tags.tags_id) WHERE blog_post_id = '$get_id'";
 
@@ -255,7 +268,7 @@
 					while ($row = mysqli_fetch_assoc($result)) {
 						extract($row);
 
-						echo "$tag_name, ";
+						echo "<span class='tag-box'>$tag_name</span>";
 
 					}
 
@@ -283,303 +296,72 @@
 
 
 <!-- about the author -->
-	<div class='win-author-box clearfix'>
-		<figure class='margin-0'>
-			<img src='page-imgs/admin.jpg' class='win-author-box-img'>
-		</figure>
-		<div class='win-author-box-header'>
-			<div class='win-author-box-name' title='Verified Author'>
-				Kevin C. Chavez
-			</div>
-			<div class='win-author-box-job-title'>
-				Web Developer at Google
-			</div>
-		</div>
-
-		<div class='win-author-box-bio clearfix'>
-			Lorem ipsum dolor sit amet, consetetur! Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Lorem ipsum dolor sit amet sadipscing elitr, sed diam nonumy eirmod tempor.
-		</div>
-	</div> <!-- end of author box -->
+	<?php require 'article-pages/author-box.php' ?>
 
 <!-- prev post and next post -->
-	<div class='widget-post-nav clearfix'>
-		<div class='widget-col-prev'>
-			<a href="viewpost.php?id=<?php echo $prevpost_id; ?>" class='nav-a'>
-				<img src="/capstone2<?php echo $prevpost_thumb; ?>" class='img-prev'>
-
-				<span class='nav-span-prev'> 
-					PREVIOUS
-				</span>
-
-				<p class='nav-p'>
-					<?php echo $prevpost_title; ?>
-				</p>
-			</a>
-		</div>
-
-		<div class='widget-col-next'>
-			<a href="viewpost.php?id=<?php echo $nextpost_id; ?>" class='nav-a'>
-				<img src="/capstone2<?php echo $nextpost_thumb; ?>" class='img-next'>
-
-				<span class='nav-span-next'>
-					NEXT 
-				</span>
-
-				<p class='nav-p'>
-					<?php echo $nextpost_title; ?>
-				</p>
-			</a>
-		</div>	
-	</div>
-
+	<?php require 'article-pages/prev-next.php' ?>
 
 <!-- related articles section -->
-	<section class='related-articles clearfix'>
-
-		<div class='feed-related-articles clearfix'>
-
-				<div class='widget-title-red upsize-font center-me'>
-					<span class='widget-title-inner'>
-						We Recommend 
-					</span>
-
-				</div>
-
-
-					<div class='win-row clearfix'>
-
-						<div class='col-sm-6 col-md-4 col-fix-margin center-text'>
-
-							<figure class='related-figure'>
-								<img src='http://localhost/capstone2/uploads/blog_images/Double-Dragon-3.jpg' class='related-img'>
-							</figure>
-
-							<div class='widget-content-md'>
-
-								<div class='widget-meta-category-md'>
-									FHM BABES
-								</div>
-
-								<div class='widget-title-md'>
-									Nadine Lustre Marks ‘Sexiest Woman’ Win With A Sultry Dance Number
-								</div>
-
-							</div>
-						</div>
-
-
-
-						<div class='col-sm-6 col-md-4 col-fix-margin'>
-
-						
-							<figure class='related-figure'>
-								<img src='http://localhost/capstone2/uploads/blog_images/Double-Dragon-3.jpg' class='related-img'>
-							</figure>
-
-							<div class='widget-content-md'>
-								<div class='widget-meta-category-md'>
-									FHM BABES
-								</div>
-								<div class='widget-title-md'>
-									Nadine Lustre Marks ‘Sexiest Woman’ Win With A Sultry Dance Number
-								</div>
-							</div>
-						</div>
-
-
-						<div class='col-sm-6 col-md-4 col-fix-margin'>
-
-						
-							<figure class='related-figure'>
-								<img src='http://images2.fhm.com.ph/2017/07/07/superheroes.jpg'>
-							</figure>
-
-							<div class='widget-content-md'>
-								<div class='widget-meta-category-md'>
-									FHM BABES
-								</div>
-								<div class='widget-title-md'>
-									Nadine Lustre Marks ‘Sexiest Woman’ Win With A Sultry Dance Number
-								</div>
-							</div>
-						</div>
-
-			
-					</div> <!-- win-row clearfix -->
-
-
-
-
-
-
-
-
-
-
-
-					<div class='win-row clearfix'>
-
-						<div class='col-sm-6 col-md-4 col-fix-margin center-text'>
-
-							<figure class='related-figure'>
-								<img src='http://images2.fhm.com.ph/2017/07/06/ADDL.jpg'>
-							</figure>
-
-							<div class='widget-content-md'>
-
-								<div class='widget-meta-category-md'>
-									FHM BABES
-								</div>
-
-								<div class='widget-title-md'>
-									Nadine Lustre Marks ‘Sexiest Woman’ Win With A Sultry Dance Number
-								</div>
-
-							</div>
-						</div>
-
-
-						<div class='col-sm-6 col-md-4 col-fix-margin'>
-
-						
-							<figure class='related-figure'>
-								<img src='http://images2.fhm.com.ph/2017/07/05/0705-crappiest-mma-640.jpg'>
-							</figure>
-
-							<div class='widget-content-md'>
-								<div class='widget-meta-category-md'>
-									FHM BABES
-								</div>
-								<div class='widget-title-md'>
-									Nadine Lustre Marks ‘Sexiest Woman’ Win With A Sultry Dance Number
-								</div>
-							</div>
-						</div>
-
-
-						<div class='col-sm-6 col-md-4 col-fix-margin'>
-
-						
-							<figure class='related-figure'>
-								<img src='http://images2.fhm.com.ph/2017/07/05/rsz_hairdresser-1179459_960_720.jpg'>
-							</figure>
-
-							<div class='widget-content-md'>
-								<div class='widget-meta-category-md'>
-									FHM BABES
-								</div>
-								<div class='widget-title-md'>
-									Nadine Lustre Marks ‘Sexiest Woman’ Win With A Sultry Dance Number
-								</div>
-							</div>
-						</div>
-
-			
-					</div>
-
-		</div>
-
-	</section>
-
+	<?php require 'article-pages/display-related-articles.php' ?>
 
 
 <!-- comment section -->
+	<?php require 'article-pages/display-comments-count.php' ?>
 
 	<section class='comment-section clearfix' id='comment-section'>
 
 		<h4 class='widget-title-red'>
-			<span class='widget-title-inner'>COMMENT SECTION</span>
+
+			<span class='widget-title-inner'><i class="fa fa-comments"></i>
+			&nbsp 
+			<?php 
+				if($comments_count == 0) {
+					echo " BE THE FIRST TO COMMENT";
+				} else {
+					echo $comments_count . " COMMENTS";
+				} 
+			?>
+			</span>
 		</h4>
 
-	<?php require 'article-pages/view-comments.php' ?>
 
+		<?php require 'article-pages/display-comments.php' ?>
 	</section>
-
-
-<!-- sql -->
-	<?php 
-
-		if(isset($_POST['post-comment'])){
-
-			$comment = $_POST['comments'];
-
-			$commenter_email = $_POST['email'];
-
-			$commenter = $_POST['name'];
-			
-			$commenter_website = $_POST['website'];
-			$comment_date = date('F d, Y') . " AT " . date('h:i A');
-
-			
-
-					
-		// SHOW UNIQUE VISITOR COUNT
-			// Get IP
-			// $ip = $_SERVER['REMOTE_ADDR'];
-
-			// Check if this IP exist
-			$sql = "SELECT visitor_email FROM visitors WHERE visitor_email='$commenter_email'";
-
-			$result = mysqli_query($con,$sql);
-
-			if (mysqli_num_rows($result)==0) {
-				$query = "INSERT INTO visitors(ip, visitor_name, visitor_website, visitor_email) VALUES('$ip', '$commenter', '$commenter_website', '$commenter_email')";
-				if(mysqli_query($con,$query)){
-					$visitor_id = mysqli_insert_id($con);
-				}
-			} else {
-				$query = "SELECT visitor_id FROM visitors WHERE ip='$ip'";
-				$result = mysqli_query($con,$query);
-				while($row = mysqli_fetch_assoc($result)){
-					$visitor_id = $row['visitor_id'];
-				}
-			}
-
-			// query for inserting visitor info
-			$sql = "INSERT INTO visitors(comment, comment_date, visitor_id) VALUES ('$comment', '$comment_date', '$visitor_id')";
-			mysqli_query($con,$sql);
-
-
-			//query for inserting a comment
-			$sql_comment = "INSERT INTO comments(comment, comment_date, visitor_id) VALUES ('$comment', '$comment_date', '$visitor_id')";
-
-			if(mysqli_query($con,$sql_comment)){
-				// if new insert (ex. comment), this function gets the recently added id and stores into a variable.
-				$comment_id = mysqli_insert_id($con); 
-
-				}
-
-
-			$sql = "INSERT INTO blog_comments(blog_post_id, comment_id, visitor_id) VALUES ('$get_id','$comment_id','$visitor_id')";
-
-			$result = mysqli_query($con,$sql);
-		
-
-
-
-		} // end of if statement
-
-	 ?>
 
 <!-- comment form	 -->
 	<div class='comment-form'>
-		<form method='POST'>
-			Email <br>
-			<input type='email' id='comment-email' name='email' placeholder='Email' required><br><br>
-			<div class="form-group">
-				<label for="comments">Comment</label>
-				<textarea style="margin: 0px; height: 200px; width: 767px;" type='text' name='comments' required></textarea>
+		<h3 class='comment-form-heading'>Leave a comment</h3>
+		<form method='POST' id='comment-form'>
+			<div class='comment-form-control'>
+				<label class='comment-form-label'>Email</label>
+				<span class='fill-required'>*</span>
 			</div>
-			Name <br>
-			<input type='text' id='comment-name' name='name' placeholder='Name' required><br><br>
-	
-			Website <br>
-			<input type='text' id='comment-website' name='website' placeholder='Website'><br><br>
-			<input type='submit' id='submit-comment' name='post-comment' value='Submit'><br><br>
+			<input type='email' class='comment-form-input' id='comment-email' name='email' placeholder='Enter your email..' required>
+
+			<div class='comment-form-control'>
+				<label class='comment-form-label'>Name</label>
+				<span class='fill-required'>*</span>
+			</div>
+			<input type='text' class='comment-form-input' id='comment-name' name='name' placeholder='Enter your name..' required>
+
+			<div class='comment-form-control'>
+				<label class='comment-form-label'>Website</label>
+			</div>
+			<input type='text' class='comment-form-input' id='comment-website' name='website' placeholder='Enter your website..'>
+
+			<div class='comment-form-control'>
+				<label class='comment-form-label'>Comment</label>
+				<span class='fill-required'>*</span>
+			</div>
+			<textarea  class='comment-form-textarea' type='text' name='comments' placeholder='Enter your comment..' required></textarea>
+
+			<div class="form-group">
+			<input type='submit' class='comment-form-submit' id='submit-comment' name='post-comment' value='Post Comment'><br><br>
+			</div>
+
 		</form>
 	</div>
 
 <?php require_once 'library.php'; ?>
 	
-
 

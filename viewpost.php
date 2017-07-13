@@ -1,5 +1,7 @@
 <?php 
 
+
+
 if(isset($_GET['id'])){
 	function get_title(){ // Displays Page Title
 

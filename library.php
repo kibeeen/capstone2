@@ -99,7 +99,7 @@ $( document ).ready(function(){
 	$('#comment-email').blur(function(){
 		$.post("api/check-email.php",
 	    {
-	        email: $('#comment-email').val()
+	        email: $('#comment-email').val(),
 	    },
 	    function(data, status){
 	    	if(data=='0'){

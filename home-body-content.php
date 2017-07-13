@@ -82,6 +82,15 @@
 			<?php require_once 'article-pages/category3.php' ?>
 
 		</div>
+		
+		<div class='row-cat clearfix'>
+			<?php require 'article-pages/category1.php' ?>
+
+			<?php require 'article-pages/category2.php' ?>
+
+			<?php require 'article-pages/category3.php' ?>
+
+		</div>
 
 
 

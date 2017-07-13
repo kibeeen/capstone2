@@ -5,8 +5,12 @@
 	date_default_timezone_set("Asia/Singapore");
 
 
-	if ($_SESSION['role'] != 'admin')
+	if ($_SESSION['role'] == 'admin' OR $_SESSION['role'] == 'author')
+		$_SESSION['login-msg'] = "Username or Password did not match!";
+	else {
 		header("location:../restricted.php");
+	}
+	
 
 	function show_category() {
 
