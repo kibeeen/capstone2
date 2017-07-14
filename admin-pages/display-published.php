@@ -214,7 +214,7 @@
 
 
 
-			header('Location: '.$_SERVER['REQUEST_URI']);
+			header('location:/capstone2/admin-pages/published-posts.php');
 
 
 

@@ -76,7 +76,7 @@
 						$visitor_id = mysqli_insert_id($con);
 					}
 				} else {
-					$query = "SELECT visitor_id FROM visitors WHERE ip='$ip'";
+					$query = "SELECT visitor_id FROM visitors WHERE visitor_email='$commenter_email'";
 					$result = mysqli_query($con,$query);
 					while($row = mysqli_fetch_assoc($result)){
 						$visitor_id = $row['visitor_id'];
@@ -84,8 +84,8 @@
 				}
 
 			// query for inserting visitor info
-			$sql = "INSERT INTO visitors(comment, comment_date, visitor_id) VALUES ('$comment', '$comment_date', '$visitor_id')";
-			mysqli_query($con,$sql);
+			// $sql = "INSERT INTO visitors(comment, comment_date, visitor_id) VALUES ('$comment', '$comment_date', '$visitor_id')";
+			// mysqli_query($con,$sql);
 
 
 			//query for inserting a comment

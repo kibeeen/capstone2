@@ -6,7 +6,7 @@
 	$sql = "SELECT * FROM blog_post
 			JOIN users ON(users.user_id = blog_post.author_id)
 			JOIN blog_categories ON(blog_categories.category_id = blog_post.category_id)
-			WHERE not approved ORDER BY date_created DESC";
+			WHERE not approved ORDER BY date_created DESC, time_created DESC";
 
 	$result = mysqli_query($con,$sql);
 
@@ -54,7 +54,7 @@
 		<td>$count</td>
 		";
 
-		if ($new_counter < 2) {
+		if ($new_counter < 3) {
 			echo "
 			<td>
 			<span class='label label-success label-new'>New</span>

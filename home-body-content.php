@@ -21,7 +21,7 @@
 		$sql = "SELECT * FROM blog_post 
 				JOIN users ON(users.user_id = blog_post.author_id) 
 				JOIN blog_categories ON(blog_categories.category_id = blog_post.category_id) 
-				WHERE approved ORDER BY date_published DESC, time_published DESC LIMIT 3";
+				WHERE approved ORDER BY date_published DESC, time_published ASC LIMIT 3";
 
 		$result = mysqli_query($con,$sql);
 

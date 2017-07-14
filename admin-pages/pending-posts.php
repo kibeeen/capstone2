@@ -18,7 +18,7 @@
 						  				<th>Author</th>
 						  				<th>Category</th>
 						  				<th>Tags</th>
-						  				<th>Date Published</th>
+						  				<th>Date Submitted</th>
 						  				<th>Last Modified</th>
 						  				<th class='center-text'>Status</th>
 						  				<th class='center-text'>View</th>

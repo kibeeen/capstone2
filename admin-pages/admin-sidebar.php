@@ -31,7 +31,7 @@
 			<a href='#'><li><i class="fa fa-line-chart"></i>Statistics</li></a>
 			<a href='#'><li><i class="fa fa-cog"></i>Settings</li></a>
 
-			<?php echo $_SESSION['username']; ?>
+			<a href='/capstone2/win-logout.php'>Log out</a>
 			 
 		</ul>
 	</nav>

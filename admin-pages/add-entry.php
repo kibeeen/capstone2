@@ -200,15 +200,6 @@
 									}
 
 
-	// $query = "SELECT * FROM blog_visitors WHERE blog_post_id='$get_id' AND visitor_id='$visitor_id'";
-	// 		$result = mysqli_query($con,$query);
-
-	// 		if(mysqli_num_rows($result)==0){
-				
-	// 			$query = "INSERT INTO blog_visitors(visitor_id,blog_post_id) VALUES('$visitor_id','$get_id')";
-	// 			mysqli_query($con,$query);
-	// 		}
-
 									echo 'Post Submitted!';
 
 								}

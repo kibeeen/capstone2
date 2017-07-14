@@ -7,7 +7,7 @@
 		$get_cat_id = $_GET['id'];
 
 
-		$sql = "SELECT * FROM blog_post JOIN users ON(users.user_id = blog_post.author_id) JOIN blog_categories ON(blog_categories.category_id = blog_post.category_id) WHERE blog_post.category_id = '$get_cat_id'";
+		$sql = "SELECT * FROM blog_post JOIN users ON(users.user_id = blog_post.author_id) JOIN blog_categories ON(blog_categories.category_id = blog_post.category_id) WHERE blog_post.category_id = '$get_cat_id' AND approved";
 
 		$result = mysqli_query($con, $sql);
 

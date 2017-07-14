@@ -97,7 +97,7 @@
 									<input type='file' name='thumbnail' required><br>
 									<figure>
 										<figcaption>Post Thumbnail</figcaption>
-										<img class='preview-thumb' src='<?php echo '../capstone2/'.$thumbnail ?>'>
+										<img class='preview-thumb' src='<?php echo '/capstone2/'.$thumbnail ?>'>
 									</figure>
 								</div>
 
